@@ -1,0 +1,29 @@
+postgres-master:
+  image: sameersbn/postgresql:9.4-21
+  container_name: postgres-master
+  restart: always
+  environment:
+    - DEBUG=false
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_NAME=test
+    - REPLICATION_USER=repluser
+    - REPLICATION_PASS=replpass
+  ports:
+    - "5432:5432"
+
+postgres-slave:
+  restart: always
+  image: sameersbn/postgresql:9.4-21
+  links:
+    - postgres-master
+  environment:
+    - DEBUG=false
+    - REPLICATION_MODE=slave
+    - REPLICATION_SSLMODE=prefer
+    - REPLICATION_HOST=postgres-master
+    - REPLICATION_PORT=5432
+    - REPLICATION_USER=repluser
+    - REPLICATION_PASS=replpass
+  # ports:
+  #   - "5433:5432"

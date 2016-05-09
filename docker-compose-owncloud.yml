@@ -1,0 +1,17 @@
+postgres:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: owncloud
+    POSTGRES_USER: owncloud
+    POSTGRES_DB: owncloud
+
+owncloud:
+  image: owncloud:8.1
+  ports:
+    - "8080:80"
+  volumes:
+    - "/home/luiz/owncloud:/var/www/html"
+  links:
+    - postgres
