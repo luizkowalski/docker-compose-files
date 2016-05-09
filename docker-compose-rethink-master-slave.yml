@@ -1,0 +1,20 @@
+rethink-master:
+  image: rethinkdb
+  ports:
+    - '8080:8080'
+    - '28015:28015'
+    - '29015:29015'
+  volumes:
+    - '/data'
+  command: "rethinkdb --server-tag docker --bind all"
+
+rethink-slave:
+  image: rethinkdb
+  ports:
+    - '8081:8080'
+    - '28016:28015'
+  volumes:
+    - '/data'
+  links:
+    - rethink-master
+  command: "rethinkdb --server-tag docker --join rethink-master:29015 --bind all"
