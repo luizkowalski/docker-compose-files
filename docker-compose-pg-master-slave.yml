@@ -11,6 +11,8 @@ postgres-master:
     - REPLICATION_PASS=replpass
   ports:
     - "5432:5432"
+  volumes:
+   - /var/lib/postgresql
 
 postgres-slave:
   restart: always
@@ -25,5 +27,7 @@ postgres-slave:
     - REPLICATION_PORT=5432
     - REPLICATION_USER=repluser
     - REPLICATION_PASS=replpass
+  volumes:
+    - /var/lib/postgresql
   # ports:
   #   - "5433:5432"
