@@ -2,6 +2,8 @@ postgres:
   image: postgres
   ports:
     - "5432:5432"
+  volumes:
+    - "/var/lib/postgresql"
   environment:
     POSTGRES_PASSWORD: owncloud
     POSTGRES_USER: owncloud
@@ -12,6 +14,6 @@ owncloud:
   ports:
     - "8080:80"
   volumes:
-    - "/home/luiz/owncloud:/var/www/html"
+    - "/home/luizeduardo/owncloud:/var/www/html"
   links:
     - postgres
