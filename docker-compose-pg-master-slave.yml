@@ -9,6 +9,8 @@ postgres-master:
     - DB_NAME=test
     - REPLICATION_USER=repluser
     - REPLICATION_PASS=replpass
+    - PG_TRUST_LOCALNET=true
+    - DB_EXTENSION=unaccent,pg_trgm
   ports:
     - "5432:5432"
   volumes:
@@ -27,6 +29,8 @@ postgres-slave:
     - REPLICATION_PORT=5432
     - REPLICATION_USER=repluser
     - REPLICATION_PASS=replpass
+    - PG_TRUST_LOCALNET=true
+    - DB_EXTENSION=unaccent,pg_trgm
   volumes:
     - /var/lib/postgresql
   # ports:
