@@ -31,7 +31,17 @@ postgres-slave:
     - REPLICATION_PASS=replpass
     - PG_TRUST_LOCALNET=true
     - DB_EXTENSION=unaccent,pg_trgm
+    - TCP_PORTS=15432,5432
   volumes:
     - /var/lib/postgresql
-  # ports:
-  #   - "5433:5432"
+  ports:
+    - "5432"
+
+lb:
+  image: dockercloud/haproxy:1.2.1
+  links:
+    - postgres-slave
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  ports:
+    - "15432:5432"
