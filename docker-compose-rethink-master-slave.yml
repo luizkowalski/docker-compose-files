@@ -18,3 +18,15 @@ rethink-slave:
   links:
     - rethink-master
   command: "rethinkdb --server-tag docker --join rethink-master:29015 --bind all"
+
+
+rethink-proxy:
+    image: rethinkdb
+    ports:
+      - '8082:8080'
+      - '28017:28015'
+    volumes:
+      - '/data'
+    links:
+      - rethink-master
+    command: "rethinkdb proxy --join rethink-master:29015 --bind all"
