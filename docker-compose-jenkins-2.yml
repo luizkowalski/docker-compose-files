@@ -1,5 +1,5 @@
 jenkins:
-  image: jenkins:2.0-alpine
+  image: jenkinsci/jenkins:2.7
   ports:
     - '8080:8080'
     - '50000:50000'
