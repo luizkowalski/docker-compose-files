@@ -31,7 +31,7 @@ postgres-slave:
     - REPLICATION_PASS=replpass
     - PG_TRUST_LOCALNET=true
     - DB_EXTENSION=unaccent,pg_trgm
-    - TCP_PORTS=15432,5432
+    - TCP_PORTS=5432
   volumes:
     - /var/lib/postgresql
   ports:
