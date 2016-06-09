@@ -1,7 +1,9 @@
-jenkins:
-  image: jenkinsci/jenkins:2.7
-  ports:
-    - '8080:8080'
-    - '50000:50000'
-  volumes:
-    - '/var/jenkins_home'
+version: '2'
+services:
+    jenkins:
+      image: jenkinsci/jenkins:2.8
+      ports:
+        - '8080:8080'
+        - '50000:50000'
+      volumes:
+        - '/var/jenkins_home'
